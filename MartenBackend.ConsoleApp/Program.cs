@@ -3,7 +3,6 @@ using Autofac;
 using MartenBackend.Domain;
 using MartenBackend.Bootstrapping;
 
-
 namespace MartenBackend.ConsoleApp
 {
     public class Program

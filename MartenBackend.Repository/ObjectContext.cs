@@ -13,7 +13,6 @@ namespace MartenBackend.Repository
            });
 
         }
-
         public DocumentStore GetStore()
         {
             return _store;

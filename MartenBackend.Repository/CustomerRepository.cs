@@ -14,7 +14,6 @@ namespace MartenBackend.Repository
         {
             _objectContext = objectcontext;
         }
-
         public async Task<IList<Customer>> GetAsync()
         {
             using (var session = _objectContext.GetStore().QuerySession())
@@ -40,7 +39,6 @@ namespace MartenBackend.Repository
                 return customer;
             }
         }
-
         public async Task<int> CountAsync()
         {
             using (var session = _objectContext.GetStore().QuerySession())

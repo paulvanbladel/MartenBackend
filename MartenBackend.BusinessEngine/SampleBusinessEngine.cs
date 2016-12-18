@@ -1,6 +1,7 @@
 ﻿using MartenBackend.BusinessEngine.Contract;
 using MartenBackend.Repository.Contract;
 using System;
+using System.Threading.Tasks;
 
 namespace MartenBackend.BusinessEngine
 {
@@ -11,12 +12,10 @@ namespace MartenBackend.BusinessEngine
         {
             _repo = repo;
         }
-        
-        public double ADataMiningOperation()
+        public async Task<double> ADataMiningOperation()
         {
             
-            //TODO async
-            var result = _repo.CountAsync().Result;
+            var result = await _repo.CountAsync();
 
             return Math.PI * result;
         }

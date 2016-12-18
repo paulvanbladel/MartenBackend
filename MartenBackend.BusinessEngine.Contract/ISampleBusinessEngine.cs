@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Threading.Tasks;
 
 namespace MartenBackend.BusinessEngine.Contract
 {
     public interface ISampleBusinessEngine
     {
-        double ADataMiningOperation();
+        Task<double> ADataMiningOperation();
     }
 }

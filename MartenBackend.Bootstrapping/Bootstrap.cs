@@ -12,19 +12,13 @@ namespace MartenBackend.Bootstrapping
             string connectionString = AppConfig.GetConnectionStringBuildFromEnvironmentVariables();
 
             builder.RegisterModule(new CommonModule(connectionString));
+
             builder.RegisterType<Application.Application>().As<IApplication>();
 
             var container = builder.Build();
-           
-
             return container;
         }
-        
     }
-
-
-   
-
 }
 
 
