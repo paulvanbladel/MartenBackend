@@ -4,6 +4,6 @@ namespace MartenBackend.Domain
 {
     public interface IApplication
     {
-        Task Run();
+        Task RunAsync();
     }
 }

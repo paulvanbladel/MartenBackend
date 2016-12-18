@@ -15,7 +15,7 @@ namespace MartenBackend.Repository
             _objectContext = objectcontext;
         }
 
-        public async Task<IList<Customer>> Get()
+        public async Task<IList<Customer>> GetAsync()
         {
             using (var session = _objectContext.GetStore().QuerySession())
             {
@@ -24,14 +24,14 @@ namespace MartenBackend.Repository
                 return await session.Query<Customer>().ToListAsync() ;
             }
         }
-        public async Task<Customer> GetById(int id)
+        public async Task<Customer> GetByIdAsync(int id)
         {
             using (var session = _objectContext.GetStore().QuerySession())
             {
                 return await session.LoadAsync<Customer>(id);
             }
         }
-        public async Task<Customer> Create(Customer customer)
+        public async Task<Customer> CreateAsync(Customer customer)
         {
             using (var session = _objectContext.GetStore().LightweightSession())
             {
@@ -41,7 +41,7 @@ namespace MartenBackend.Repository
             }
         }
 
-        public async Task<int> Count()
+        public async Task<int> CountAsync()
         {
             using (var session = _objectContext.GetStore().QuerySession())
             {

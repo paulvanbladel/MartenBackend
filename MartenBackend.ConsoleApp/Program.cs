@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Linq;
 using Autofac;
 using MartenBackend.Domain;
 using MartenBackend.Bootstrapping;
+
 
 namespace MartenBackend.ConsoleApp
 {
@@ -10,12 +10,12 @@ namespace MartenBackend.ConsoleApp
     {
         public static void Main(string[] args)
         {
-            ;
             var container = Bootstrap.GetContainerForConsoleApp();
+
             using (var scope = container.BeginLifetimeScope())
             {
                 var app = scope.Resolve<IApplication>();
-                app.Run().Wait();
+                app.RunAsync().Wait();
             }
             Console.Read();
         }

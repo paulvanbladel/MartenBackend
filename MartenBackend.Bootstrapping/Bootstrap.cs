@@ -1,7 +1,6 @@
 ﻿using Autofac;
 using MartenBackend.Application;
 using MartenBackend.Domain;
-using System;
 
 namespace MartenBackend.Bootstrapping
 {
@@ -16,13 +15,16 @@ namespace MartenBackend.Bootstrapping
             builder.RegisterType<Application.Application>().As<IApplication>();
 
             var container = builder.Build();
+           
+
             return container;
         }
-         static Bootstrap()
-        {
-
-        }
+        
     }
+
+
+   
+
 }
 
 

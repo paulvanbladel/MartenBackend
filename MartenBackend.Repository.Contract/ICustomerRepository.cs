@@ -3,12 +3,18 @@ using System.Threading.Tasks;
 using MartenBackend.Domain;
 namespace MartenBackend.Repository.Contract
 {
-    public interface ICustomerRepository
+    public interface ICustomerRepository: IRepository
     {
-        Task<Customer> GetById(int id);
-        Task<Customer> Create(Customer customer);
-        Task<int> Count();
-        Task<IList<Customer>> Get();
+        Task<Customer> GetByIdAsync(int id);
+        Task<Customer> CreateAsync(Customer customer);
+        Task<int> CountAsync();
+        Task<IList<Customer>> GetAsync();
 
     }
+
+    
+
+
+    
+    
 }
