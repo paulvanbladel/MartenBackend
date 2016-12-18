@@ -14,7 +14,6 @@ namespace MartenBackend.BusinessEngine.Test
         [Fact]
         public void Test1()
         {
-
             IContainer container = Bootstrap.GetContainerForBusinessEngineUnitTest();
 
             using (var scope = container.BeginLifetimeScope())
