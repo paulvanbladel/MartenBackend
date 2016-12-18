@@ -39,7 +39,7 @@ namespace MartenBackend.Repository
                 return customer;
             }
         }
-        public async Task<int> CountAsync()
+        public virtual async Task<int> CountAsync()
         {
             using (var session = _objectContext.GetStore().QuerySession())
             {
