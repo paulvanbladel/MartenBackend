@@ -1,0 +1,16 @@
+version: '2'
+services:
+  db:
+    image: postgres
+    ports:
+     - 5432:5432
+  coreclrapp:
+    build: .
+    depends_on:
+     - db
+    environment:
+     - MARTEN_HOST=db
+     - MARTEN_DATABASE=postgres
+     - MARTEN_USER=postgres
+     - MARTEN_PASSWORD=doesntmattersomuch
+  
