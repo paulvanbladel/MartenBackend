@@ -4,6 +4,7 @@ using MartenBackend.Domain;
 using MartenBackend.Bootstrapping;
 using MartenBackend.Common.Contract;
 using MartenBackend.Bootstrapping.Consumer;
+using Microsoft.Extensions.Configuration;
 
 namespace MartenBackend.ConsoleApp
 {

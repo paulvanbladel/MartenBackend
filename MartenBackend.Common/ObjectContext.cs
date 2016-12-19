@@ -1,6 +1,6 @@
 using Marten;
 
-namespace MartenBackend.Repository
+namespace MartenBackend.Common
 {
     public class ObjectContext
     {

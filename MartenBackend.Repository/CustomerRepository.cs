@@ -1,51 +1,22 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
-using Marten;
 using MartenBackend.Repository.Contract;
 using MartenBackend.Domain;
+using MartenBackend.Common;
+
 namespace MartenBackend.Repository
 {
-    public  class CustomerRepository : ICustomerRepository
+    //public static class IRepoExtensions
+    //{
+    //    public static Task<IList<T>> GetAsyncxxx<T>(
+    //        this ICustomerRepository repo, 
+    //        Func<IQueryable<T>,  IQueryable<T>> queryShaper) where T:class
+    //    {
+    //        return repo.GetAsync2(queryShaper);
+    //    }
+
+    //}
+
+    public class CustomerRepository : RepositoryBase<Customer>, ICustomerRepository
     {
-        private ObjectContext _objectContext;
-        public CustomerRepository(ObjectContext objectcontext)
-        {
-            _objectContext = objectcontext;
-        }
-        public async Task<IList<Customer>> GetAsync()
-        {
-            using (var session = _objectContext.GetStore().QuerySession())
-            {
-                //CancellationToken token = new CancellationToken();
-                
-                return await session.Query<Customer>().ToListAsync() ;
-            }
-        }
-        public async Task<Customer> GetByIdAsync(int id)
-        {
-            using (var session = _objectContext.GetStore().QuerySession())
-            {
-                return await session.LoadAsync<Customer>(id);
-            }
-        }
-        public async Task<Customer> CreateAsync(Customer customer)
-        {
-            using (var session = _objectContext.GetStore().LightweightSession())
-            {
-                session.Store(customer);
-                await session.SaveChangesAsync();
-                return customer;
-            }
-        }
-        public virtual async Task<int> CountAsync()
-        {
-            using (var session = _objectContext.GetStore().QuerySession())
-            {
-                CancellationToken token = new CancellationToken();
-                return await session.Query<Customer>().CountAsync(token);
-            }
-        }
+        public CustomerRepository(ObjectContext objectcontext) : base(objectcontext) { }
     }
 }

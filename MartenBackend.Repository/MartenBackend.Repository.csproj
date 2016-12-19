@@ -8,9 +8,6 @@
     <EmbeddedResource Include="**\*.resx" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Marten">
-      <Version>1.2.4</Version>
-    </PackageReference>
     <PackageReference Include="NETStandard.Library">
       <Version>1.6.1</Version>
     </PackageReference>
@@ -20,6 +17,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MartenBackend.Common.Contract\MartenBackend.Common.Contract.csproj" />
+    <ProjectReference Include="..\MartenBackend.Common\MartenBackend.Common.csproj" />
     <ProjectReference Include="..\MartenBackend.Domain\MartenBackend.Domain.csproj" />
     <ProjectReference Include="..\MartenBackend.Repository.Contract\MartenBackend.Repository.Contract.csproj" />
   </ItemGroup>

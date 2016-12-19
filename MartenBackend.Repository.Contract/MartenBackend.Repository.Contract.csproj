@@ -17,6 +17,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\MartenBackend.Common.Contract\MartenBackend.Common.Contract.csproj" />
     <ProjectReference Include="..\MartenBackend.Domain\MartenBackend.Domain.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

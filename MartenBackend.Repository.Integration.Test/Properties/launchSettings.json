@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "MartenBackend.Repository.Integration.Test": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "MARTEN_PASSWORD": ".",
+        "MARTEN_USER": "postgres",
+        "MARTEN_DATABASE": "postgres",
+        "MARTEN_HOST": "localhost"
+      }
+    }
+  }
+}

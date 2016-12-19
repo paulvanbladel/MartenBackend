@@ -1,20 +1,16 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MartenBackend.Domain;
+using System.Linq.Expressions;
+using System;
+using System.Linq;
+using MartenBackend.Common;
+using MartenBackend.Common.Contract;
+
 namespace MartenBackend.Repository.Contract
 {
-    public interface ICustomerRepository: IRepository
+    public interface ICustomerRepository : IRepository<Customer>
     {
-        Task<Customer> GetByIdAsync(int id);
-        Task<Customer> CreateAsync(Customer customer);
-        Task<int> CountAsync();
-        Task<IList<Customer>> GetAsync();
-
+       //add specific customer repo method...
     }
-
-    
-
-
-    
-    
 }

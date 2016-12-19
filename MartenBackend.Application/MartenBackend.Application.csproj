@@ -22,6 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MartenBackend.BusinessEngine.Contract\MartenBackend.BusinessEngine.Contract.csproj" />
     <ProjectReference Include="..\MartenBackend.Common.Contract\MartenBackend.Common.Contract.csproj" />
+    <ProjectReference Include="..\MartenBackend.Common\MartenBackend.Common.csproj" />
     <ProjectReference Include="..\MartenBackend.Domain\MartenBackend.Domain.csproj" />
     <ProjectReference Include="..\MartenBackend.Repository.Contract\MartenBackend.Repository.Contract.csproj" />
   </ItemGroup>
