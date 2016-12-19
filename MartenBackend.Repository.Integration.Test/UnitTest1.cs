@@ -1,9 +1,9 @@
 using System;
 using Xunit;
 
-namespace MartenBackend.Repository.Test
+namespace MartenBackend.Repository.Integration.Test
 {
-    public class UnitTest1
+    public class CustomerRepositoryIntegrationTests
     {
         [Fact]
         public void Test1()

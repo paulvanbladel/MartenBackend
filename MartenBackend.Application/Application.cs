@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using MartenBackend.Repository.Contract;
 using MartenBackend.Domain;
 using MartenBackend.BusinessEngine.Contract;
+using MartenBackend.Common.Contract;
 
 namespace MartenBackend.Application
 {

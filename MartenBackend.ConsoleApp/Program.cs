@@ -2,6 +2,8 @@
 using Autofac;
 using MartenBackend.Domain;
 using MartenBackend.Bootstrapping;
+using MartenBackend.Common.Contract;
+using MartenBackend.Bootstrapping.Consumer;
 
 namespace MartenBackend.ConsoleApp
 {
@@ -9,7 +11,7 @@ namespace MartenBackend.ConsoleApp
     {
         public static void Main(string[] args)
         {
-            var container = Bootstrap.GetContainerForConsoleApp();
+            var container = ClientConsole.GetContainer();
 
             using (var scope = container.BeginLifetimeScope())
             {

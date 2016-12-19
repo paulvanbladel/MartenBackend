@@ -1,6 +1,7 @@
 using Autofac;
 using Autofac.Extras.Moq;
 using MartenBackend.Bootstrapping;
+using MartenBackend.Bootstrapping.Consumer;
 using MartenBackend.Repository.Contract;
 using System;
 using System.Threading.Tasks;
@@ -14,7 +15,7 @@ namespace MartenBackend.BusinessEngine.Test
         [Fact]
         public void Test1()
         {
-            IContainer container = Bootstrap.GetContainerForBusinessEngineUnitTest();
+            IContainer container = BusinessEngineUnitTests.GetContainer();
 
             using (var scope = container.BeginLifetimeScope())
             {
@@ -32,7 +33,6 @@ namespace MartenBackend.BusinessEngine.Test
                     mock.Mock<ICustomerRepository>().Verify(x => x.CountAsync());
                     Assert.Equal(5 * Math.PI, actual);
                 }
-
             }
         }
     }
