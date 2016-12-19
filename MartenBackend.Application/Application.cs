@@ -23,6 +23,8 @@ namespace MartenBackend.Application
                 FirstName = "paul",
                 LastName = "van bladel"
             };
+
+            //use direct repo
             var createdCustomer = await _repo.CreateAsync(customer);
             int id = createdCustomer.Id;
             var resultCustomer = await _repo.GetByIdAsync(id);
