@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Configuration;
 using MartenBackend.Bootstrapping;
 using System.Linq;
-
+using MartenBackend.Common;
 namespace MartenBackend.Repository.Integration.Test
 {
     public class CustomerRepositoryIntegrationTests : RepositoryIntegrationTestBase
@@ -105,34 +105,8 @@ namespace MartenBackend.Repository.Integration.Test
 
         }
 
-        //[Fact]
-        //public void WhereClause()
-        //{
-        //    ICustomerRepository repo =
-        //    this.Container.Resolve<ICustomerRepository>();
-
-        //    repo.DeleteAll();
-
-        //    Customer customer1 = new Customer
-        //    {
-        //        FirstName = "jos",
-        //        LastName = "josmans"
-        //    };
-        //    var created1 = repo.CreateAsync(customer1).Result;
-        //    Customer customer2 = new Customer
-        //    {
-        //        FirstName = "benoit",
-        //        LastName = "benoitmans"
-        //    };
-        //    var created2 = repo.CreateAsync(customer2).Result;
-
-        //    var result = repo.GetAsync(c => c.FirstName == "jos").Result;
-        //    Assert.Equal(1, result.Count);
-        //    Assert.Equal("jos", result[0].FirstName);
-        //}
-
         [Fact]
-        public void WhereClause2()
+        public void WhereClause()
         {
             ICustomerRepository repo =
             this.Container.Resolve<ICustomerRepository>();
@@ -156,12 +130,8 @@ namespace MartenBackend.Repository.Integration.Test
                 = (shaper) => shaper.Where(d => d.FirstName == "jos").OrderBy(o=>o.FirstName);
 
             var result = repo.GetAsync(queryShaper).Result;
-            //var result2 = repo.GetAsyncxxx()
             Assert.Equal(1, result.Count);
             Assert.Equal("jos", result[0].FirstName);
         }
-
-
-
     }
 }

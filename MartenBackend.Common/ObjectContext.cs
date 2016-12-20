@@ -11,7 +11,6 @@ namespace MartenBackend.Common
            {
                configure.Connection(connectionString);
            });
-
         }
         public DocumentStore GetStore()
         {
