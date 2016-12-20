@@ -11,21 +11,21 @@ namespace MartenBackend.Repository
 {
     public class CustomerRepository : RepositoryBase<Customer>, ICustomerRepository
     {
-        public CustomerRepository(ObjectContext objectcontext) : base(objectcontext) { }
+        public CustomerRepository(IDocumentStore documentStore) : base(documentStore) { }
 
         public void BulkInsert(Customer[] customers)
         {
-            this._objectContext.Store.BulkInsert(customers);
+            this._documentStore.BulkInsert(customers);
         }
 
         public void CompletelyRemove()
         {
-            this._objectContext.Store.Advanced.Clean.CompletelyRemove(typeof(Customer));
+            this._documentStore.Advanced.Clean.CompletelyRemove(typeof(Customer));
         }
 
         public IList<Customer> FindAllCustomersByFirstName(string firstName)
         {
-            using (var session = _objectContext.Store.QuerySession())
+            using (var session = _documentStore.QuerySession())
             {
                 var query = new FindAllCustomersByFirstNameCompiledQuery(firstName);
                 //TODO tolistasync is not working here
@@ -38,7 +38,7 @@ namespace MartenBackend.Repository
         public void BatchQuery()
         {
             
-                using (IQuerySession session = _objectContext.Store.QuerySession())
+                using (var session = _documentStore.QuerySession())
             {
                 IBatchedQuery batch = session.CreateBatchQuery();
                 var query = new FindAllCustomersByFirstNameCompiledQuery("abc");

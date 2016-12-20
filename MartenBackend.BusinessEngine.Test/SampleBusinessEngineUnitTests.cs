@@ -1,6 +1,5 @@
 using Autofac;
 using Autofac.Extras.Moq;
-using MartenBackend.Bootstrapping;
 using MartenBackend.Bootstrapping.Consumer;
 using MartenBackend.Repository.Contract;
 using System;

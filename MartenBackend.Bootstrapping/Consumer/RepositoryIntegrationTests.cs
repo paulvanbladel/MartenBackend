@@ -1,5 +1,8 @@
 ﻿using Autofac;
+using Marten;
 using MartenBackend.Application;
+using MartenBackend.Common;
+using MartenBackend.Domain;
 
 namespace MartenBackend.Bootstrapping.Consumer
 {
@@ -13,7 +16,22 @@ namespace MartenBackend.Bootstrapping.Consumer
 
             //string connectionString = AppConfig.GetConnectionStringBuildFromEnvironmentVariables();
             string connectionString = @"host=localhost;database=postgres;password=.;username=postgres";
-            builder.RegisterModule(new RepositoryModule(connectionString));
+
+            var Store = DocumentStore.For(configure =>
+            {
+                configure.Connection(connectionString);
+                configure.Schema.For<Customer>().UseOptimisticConcurrency(true).SoftDeleted();
+                //using pre-supplied logger
+                //configure.Logger(new ConsoleMartenLogger());
+                configure.Logger(new CustomMartenLogger());
+                //TODO integrate with serilog
+
+            });
+
+            builder.Register(r => Store).As<IDocumentStore>();
+
+
+            builder.RegisterModule(new RepositoryModule());
 
             var container = builder.Build();
             return container;

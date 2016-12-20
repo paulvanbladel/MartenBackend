@@ -1,4 +1,7 @@
 ﻿using Autofac;
+using Marten;
+using MartenBackend.Common;
+using MartenBackend.Domain;
 
 namespace MartenBackend.Bootstrapping.Consumer
 {
@@ -8,7 +11,15 @@ namespace MartenBackend.Bootstrapping.Consumer
         {
             var builder = new ContainerBuilder();
             string connectionString = "dummy";
-            builder.RegisterModule(new RepositoryModule(connectionString));
+
+
+            //var Store = DocumentStore.For("");
+
+            //builder.Register(r => Store).As<IDocumentStore>();
+
+
+
+            builder.RegisterModule(new RepositoryModule());
 
             var container = builder.Build();
             return container;

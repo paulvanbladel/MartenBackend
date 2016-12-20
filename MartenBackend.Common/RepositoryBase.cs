@@ -13,15 +13,15 @@ namespace MartenBackend.Common
     public abstract class RepositoryBase<T> : IRepository<T>
           where T : class, new()
     {
-        protected ObjectContext _objectContext;
+        protected IDocumentStore _documentStore;
 
-        public RepositoryBase(ObjectContext objectcontext)
+        public RepositoryBase(IDocumentStore documentStore)
         {
-            _objectContext = objectcontext;
+            _documentStore = documentStore;
         }
         public async Task<IList<T>> GetAsync()
         {
-            using (var session = _objectContext.Store.QuerySession())
+            using (var session = _documentStore.QuerySession())
             {
                 //CancellationToken token = new CancellationToken();
 
@@ -30,14 +30,14 @@ namespace MartenBackend.Common
         }
         public async Task<T> GetByIdAsync(int id)
         {
-            using (var session = _objectContext.Store.QuerySession())
+            using (var session = _documentStore.QuerySession())
             {
                 return await session.LoadAsync<T>(id);
             }
         }
         public async Task<T> CreateAsync(T entity)
         {
-            using (var session = _objectContext.Store.LightweightSession())
+            using (var session = _documentStore.LightweightSession())
             {
                 //session.Logger = new CustomSessionLogger();
                 session.Store(entity);
@@ -47,7 +47,7 @@ namespace MartenBackend.Common
         }
         public async Task<IList<T>> GetAsync(Func<IQueryable<T>, IQueryable<T>> queryShaper)
         {
-            using (var session = _objectContext.Store.QuerySession())
+            using (var session = _documentStore.QuerySession())
             {
                 var shapedQuery = queryShaper(session.Query<T>());
 
@@ -69,7 +69,7 @@ namespace MartenBackend.Common
         }
         public virtual async Task<int> CountAsync()
         {
-            using (var session = _objectContext.Store.QuerySession())
+            using (var session = _documentStore.QuerySession())
             {
                 //TODO cancellation token
                 CancellationToken token = new CancellationToken();
@@ -78,7 +78,7 @@ namespace MartenBackend.Common
         }
         public async Task Delete(T entity)
         {
-            using (var session = _objectContext.Store.LightweightSession())
+            using (var session = _documentStore.LightweightSession())
             {
                 session.Delete<T>(entity);
                 await session.SaveChangesAsync();
@@ -87,7 +87,7 @@ namespace MartenBackend.Common
         }
         public async Task Delete(int id)
         {
-            using (var session = _objectContext.Store.LightweightSession())
+            using (var session = _documentStore.LightweightSession())
             {
                 session.Delete<T>(id);
                 await session.SaveChangesAsync();
@@ -96,7 +96,7 @@ namespace MartenBackend.Common
         }
         public async Task DeleteAll()
         {
-            using (var session = _objectContext.Store.LightweightSession())
+            using (var session = _documentStore.LightweightSession())
             {
                 session.DeleteWhere<T>((c) => true);
                 await session.SaveChangesAsync();
