@@ -1,20 +1,23 @@
 using Marten;
+using MartenBackend.Domain;
 
 namespace MartenBackend.Common
 {
     public class ObjectContext
     {
-        private DocumentStore _store;
         public ObjectContext(string connectionString)
         {
-            _store = DocumentStore.For(configure =>
+            Store = DocumentStore.For(configure =>
            {
                configure.Connection(connectionString);
+               configure.Schema.For<Customer>().UseOptimisticConcurrency(true).SoftDeleted();
+               //using pre-supplied logger
+               //configure.Logger(new ConsoleMartenLogger());
+               configure.Logger(new CustomMartenLogger());
+               //TODO integrate with serilog
+               
            });
         }
-        public DocumentStore GetStore()
-        {
-            return _store;
-        }
+        public IDocumentStore Store { get; private set; }
     }
 }

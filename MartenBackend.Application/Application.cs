@@ -4,6 +4,7 @@ using MartenBackend.Repository.Contract;
 using MartenBackend.Domain;
 using MartenBackend.BusinessEngine.Contract;
 using MartenBackend.Common.Contract;
+using System.Linq;
 
 namespace MartenBackend.Application
 {
@@ -42,6 +43,15 @@ namespace MartenBackend.Application
             var amount = await _engine.ADataMiningOperation();
 
             Console.WriteLine("amount " + amount);
+
+
+
+            Func<IQueryable<Customer>, IQueryable<Customer>> queryShaper
+               = (shaper) => shaper.Where(d => d.FirstName == "jos").OrderBy(o => o.FirstName);
+
+            var result =  _repo.GetAsync(queryShaper).Result;
+
+
         }
     }
 }

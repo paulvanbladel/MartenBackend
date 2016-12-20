@@ -9,6 +9,8 @@ using Microsoft.Extensions.Configuration;
 using MartenBackend.Bootstrapping;
 using System.Linq;
 using MartenBackend.Common;
+using System.Collections.Generic;
+
 namespace MartenBackend.Repository.Integration.Test
 {
     public class CustomerRepositoryIntegrationTests : RepositoryIntegrationTestBase
@@ -127,11 +129,57 @@ namespace MartenBackend.Repository.Integration.Test
             var created2 = repo.CreateAsync(customer2).Result;
 
             Func<IQueryable<Customer>, IQueryable<Customer>> queryShaper
-                = (shaper) => shaper.Where(d => d.FirstName == "jos").OrderBy(o=>o.FirstName);
+                = (shaper) => shaper.Where(d => d.FirstName == "jos").OrderBy(o => o.FirstName);
 
             var result = repo.GetAsync(queryShaper).Result;
             Assert.Equal(1, result.Count);
             Assert.Equal("jos", result[0].FirstName);
+        }
+
+
+        [Fact]
+        public void BulkInsert()
+        {
+
+            List<Customer> customerList = new List<Customer>();
+
+            for (int i = 0; i < 1000; i++)
+            {
+                Customer customer = new Customer
+                {
+                    FirstName = "jos",
+                    LastName = Guid.NewGuid().ToString()
+                };
+
+                customerList.Add(customer);
+            }
+
+            Customer[] customers = customerList.ToArray<Customer>();
+
+            ICustomerRepository repo =
+                this.Container.Resolve<ICustomerRepository>();
+
+            repo.BulkInsert(customers);
+
+
+
+        }
+
+        [Fact]
+        public void CompletelyRemove()
+        {
+            ICustomerRepository repo =
+                this.Container.Resolve<ICustomerRepository>();
+            repo.CompletelyRemove();
+        }
+
+        [Fact]
+        public void CompileQuery()
+        {
+            ICustomerRepository repo =
+                this.Container.Resolve<ICustomerRepository>();
+            var result = repo.FindAllCustomersByFirstName("jos");
+
         }
     }
 }
