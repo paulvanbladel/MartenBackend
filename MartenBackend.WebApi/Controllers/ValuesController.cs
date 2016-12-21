@@ -7,8 +7,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace MartenBackend.WebApi.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class CustomerController : Controller
     {
+        public CustomerController()
+        {
+
+        }
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
