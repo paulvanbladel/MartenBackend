@@ -1,7 +1,5 @@
 
 using Autofac;
-using Marten;
-using MartenBackend.Common;
 using MartenBackend.Repository;
 using System.Reflection;
 

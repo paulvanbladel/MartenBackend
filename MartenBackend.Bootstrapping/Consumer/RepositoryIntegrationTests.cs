@@ -1,6 +1,5 @@
 ﻿using Autofac;
 using Marten;
-using MartenBackend.Application;
 using MartenBackend.Common;
 using MartenBackend.Domain;
 

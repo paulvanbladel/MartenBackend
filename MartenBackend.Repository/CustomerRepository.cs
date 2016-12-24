@@ -3,7 +3,6 @@ using MartenBackend.Domain;
 using MartenBackend.Common;
 using System.Collections.Generic;
 using Marten;
-using System.Threading.Tasks;
 using System.Linq;
 using Marten.Services.BatchQuerying;
 

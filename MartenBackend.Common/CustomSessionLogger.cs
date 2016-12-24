@@ -1,7 +1,5 @@
 ﻿using Marten;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using Marten.Services;
 using Npgsql;
 using System.Linq;

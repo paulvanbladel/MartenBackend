@@ -1,14 +1,10 @@
-using MartenBackend.Bootstrapping.Consumer;
 using System;
 using Xunit;
 using Autofac;
 using MartenBackend.Repository.Contract;
 using MartenBackend.Domain;
-using System.Threading.Tasks;
-using Microsoft.Extensions.Configuration;
 using MartenBackend.Bootstrapping;
 using System.Linq;
-using MartenBackend.Common;
 using System.Collections.Generic;
 
 namespace MartenBackend.Repository.Integration.Test

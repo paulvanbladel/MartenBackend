@@ -1,8 +1,6 @@
 ﻿using Autofac;
 using MartenBackend.Bootstrapping.Consumer;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace MartenBackend.Bootstrapping
 {
