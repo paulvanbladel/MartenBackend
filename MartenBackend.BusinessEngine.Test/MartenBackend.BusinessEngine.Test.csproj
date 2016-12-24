@@ -38,7 +38,7 @@
     <ProjectReference Include="..\MartenBackend.Common\MartenBackend.Common.csproj" />
     
     <ProjectReference Include="..\MartenBackend.Repository.Contract\MartenBackend.Repository.Contract.csproj" />
-    <ProjectReference Include="..\MartenBackend.Repository\MartenBackend.Repository.csproj" />
+    
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
