@@ -9,9 +9,7 @@
     <EmbeddedResource Include="**\*.resx" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac.Extras.Moq">
-      <Version>4.1.0-rc3-231</Version>
-    </PackageReference>
+    
     <PackageReference Include="Microsoft.NETCore.App">
       <Version>1.1.0</Version>
     </PackageReference>
@@ -33,13 +31,12 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MartenBackend.Application\MartenBackend.Application.csproj" />
-    <ProjectReference Include="..\MartenBackend.Bootstrapping\MartenBackend.Bootstrapping.csproj" />
     <ProjectReference Include="..\MartenBackend.BusinessEngine.Contract\MartenBackend.BusinessEngine.Contract.csproj" />
     <ProjectReference Include="..\MartenBackend.BusinessEngine\MartenBackend.BusinessEngine.csproj" />
+    <ProjectReference Include="..\MartenBackend.Domain\MartenBackend.Domain.csproj" />
     <ProjectReference Include="..\MartenBackend.Common.Contract\MartenBackend.Common.Contract.csproj" />
     <ProjectReference Include="..\MartenBackend.Common\MartenBackend.Common.csproj" />
-    <ProjectReference Include="..\MartenBackend.Domain\MartenBackend.Domain.csproj" />
+    
     <ProjectReference Include="..\MartenBackend.Repository.Contract\MartenBackend.Repository.Contract.csproj" />
     <ProjectReference Include="..\MartenBackend.Repository\MartenBackend.Repository.csproj" />
   </ItemGroup>
