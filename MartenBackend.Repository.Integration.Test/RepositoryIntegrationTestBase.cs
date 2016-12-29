@@ -1,8 +1,8 @@
 ﻿using Autofac;
-using MartenBackend.Bootstrapping.Consumer;
+
 using System;
 
-namespace MartenBackend.Bootstrapping
+namespace MartenBackend.Repository.Integration.Test
 {
     public class RepositoryIntegrationTestBase : IDisposable
     {

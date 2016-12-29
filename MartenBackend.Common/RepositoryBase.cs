@@ -76,7 +76,7 @@ namespace MartenBackend.Common
                 return await session.Query<T>().CountAsync(token);
             }
         }
-        public async Task Delete(T entity)
+        public async Task DeleteAsync(T entity)
         {
             using (var session = _documentStore.LightweightSession())
             {
@@ -85,7 +85,7 @@ namespace MartenBackend.Common
                 return;
             }
         }
-        public async Task Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             using (var session = _documentStore.LightweightSession())
             {
@@ -94,7 +94,7 @@ namespace MartenBackend.Common
                 return;
             }
         }
-        public async Task DeleteAll()
+        public async Task DeleteAllAsync()
         {
             using (var session = _documentStore.LightweightSession())
             {

@@ -1,9 +1,9 @@
-
-using Autofac;
+﻿using Autofac;
 using MartenBackend.Repository;
+using System;
 using System.Reflection;
 
-namespace MartenBackend.Bootstrapping
+namespace MartenBackend.Repository.DI
 {
     public class RepositoryModule : Autofac.Module
     {

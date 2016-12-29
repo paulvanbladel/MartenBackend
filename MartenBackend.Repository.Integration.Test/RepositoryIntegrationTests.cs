@@ -2,14 +2,22 @@
 using Marten;
 using MartenBackend.Common;
 using MartenBackend.Domain;
-using Microsoft.Extensions.DependencyInjection;
-namespace MartenBackend.Bootstrapping.Consumer
+using MartenBackend.Repository.DI;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace MartenBackend.Repository.Integration.Test
 {
-    public class WebApi
+    public class RepositoryIntegrationTests
     {
-        public static IContainer GetContainer(IServiceCollection services)
+        public static IContainer GetContainer()
         {
             var builder = new ContainerBuilder();
+            //TODO temp solution because env vars are not read from test lib project
+
+
+            //string connectionString = AppConfig.GetConnectionStringBuildFromEnvironmentVariables();
             string connectionString = @"host=localhost;database=postgres;password=.;username=postgres";
 
             var Store = DocumentStore.For(configure =>
@@ -23,12 +31,10 @@ namespace MartenBackend.Bootstrapping.Consumer
 
             });
 
+            builder.Register(r => Store).As<IDocumentStore>();
 
-            // for web api we use InstancePerRequest
-            builder.Register(r => Store).As<IDocumentStore>().InstancePerRequest();
 
             builder.RegisterModule(new RepositoryModule());
-            
 
             var container = builder.Build();
             return container;

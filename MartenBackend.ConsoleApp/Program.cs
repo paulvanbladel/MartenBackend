@@ -1,7 +1,7 @@
 ﻿using System;
 using Autofac;
 using MartenBackend.Common.Contract;
-using MartenBackend.Bootstrapping.Consumer;
+
 
 namespace MartenBackend.ConsoleApp
 {

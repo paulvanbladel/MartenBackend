@@ -3,7 +3,6 @@ using Xunit;
 using Autofac;
 using MartenBackend.Repository.Contract;
 using MartenBackend.Domain;
-using MartenBackend.Bootstrapping;
 using System.Linq;
 using System.Collections.Generic;
 
@@ -50,7 +49,7 @@ namespace MartenBackend.Repository.Integration.Test
             ICustomerRepository repo =
             this.Container.Resolve<ICustomerRepository>();
 
-            repo.DeleteAll();
+            repo.DeleteAllAsync();
 
             Customer customer1 = new Customer
             {
@@ -76,7 +75,7 @@ namespace MartenBackend.Repository.Integration.Test
             ICustomerRepository repo =
             this.Container.Resolve<ICustomerRepository>();
 
-            repo.DeleteAll(); //we are using the method under test for test setup :(
+            repo.DeleteAllAsync(); //we are using the method under test for test setup :(
 
             Customer customer1 = new Customer
             {
@@ -95,7 +94,7 @@ namespace MartenBackend.Repository.Integration.Test
             Assert.Equal(2, result.Count);
 
             //ACT
-            repo.DeleteAll();
+            repo.DeleteAllAsync().Wait() ;
 
             //ASSERT
             result = repo.GetAsync().Result;
@@ -109,7 +108,7 @@ namespace MartenBackend.Repository.Integration.Test
             ICustomerRepository repo =
             this.Container.Resolve<ICustomerRepository>();
 
-            repo.DeleteAll();
+            repo.DeleteAllAsync();
 
             Customer customer1 = new Customer
             {

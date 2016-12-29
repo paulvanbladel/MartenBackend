@@ -6,6 +6,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Autofac.Extensions.DependencyInjection;
 using Autofac;
+using Marten;
+using MartenBackend.Common;
+using MartenBackend.Domain;
+using MartenBackend.Repository.DI;
+
 namespace MartenBackend.WebApi
 {
     public class Startup
@@ -28,7 +33,7 @@ namespace MartenBackend.WebApi
         {
             // Add framework services.
             services.AddMvc();
-            this.ApplicationContainer = MartenBackend.Bootstrapping.Consumer.WebApi.GetContainer(services);
+            this.ApplicationContainer = GetContainer(services);
 
             var serviceProvider = new AutofacServiceProvider(this.ApplicationContainer);
             return serviceProvider;
@@ -46,5 +51,33 @@ namespace MartenBackend.WebApi
             appLifetime.ApplicationStopped.Register(() => this.ApplicationContainer.Dispose());
 
         }
+        public static IContainer GetContainer(IServiceCollection services)
+        {
+            var builder = new ContainerBuilder();
+            string connectionString = @"host=localhost;database=postgres;password=.;username=postgres";
+
+            var Store = DocumentStore.For(configure =>
+            {
+                configure.Connection(connectionString);
+                configure.Schema.For<Customer>().UseOptimisticConcurrency(true).SoftDeleted();
+                //using pre-supplied logger
+                //configure.Logger(new ConsoleMartenLogger());
+                configure.Logger(new CustomMartenLogger());
+                //TODO integrate with serilog
+
+            });
+
+
+            // for web api we use InstancePerRequest
+            builder.Register(r => Store).As<IDocumentStore>().InstancePerRequest();
+
+            builder.RegisterModule(new RepositoryModule());
+
+
+            var container = builder.Build();
+            return container;
+        }
     }
 }
+
+

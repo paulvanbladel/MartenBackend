@@ -8,12 +8,12 @@ using System.Linq;
 
 namespace MartenBackend.Application
 {
-    public class Application : IApplication
+    public class Applicationxxx : IApplication
     {
         private ISampleBusinessEngine _engine;
         private readonly ICustomerRepository _repo;
 
-        public Application(ICustomerRepository repo, ISampleBusinessEngine engine)
+        public Applicationxxx(ICustomerRepository repo, ISampleBusinessEngine engine)
         {
             _repo = repo;
             _engine = engine;

@@ -1,19 +1,23 @@
 ﻿using Autofac;
 using Marten;
+using MartenBackend.Application;
+using MartenBackend.Application.DI;
+using MartenBackend.BusinessEngine.DI;
 using MartenBackend.Common;
+using MartenBackend.Common.Contract;
 using MartenBackend.Domain;
+using MartenBackend.Repository.DI;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
-namespace MartenBackend.Bootstrapping.Consumer
+namespace MartenBackend.ConsoleApp
 {
-    public class RepositoryIntegrationTests
+    public class ClientConsole
     {
         public static IContainer GetContainer()
         {
             var builder = new ContainerBuilder();
-            //TODO temp solution because env vars are not read from test lib project
-
-
-            //string connectionString = AppConfig.GetConnectionStringBuildFromEnvironmentVariables();
             string connectionString = @"host=localhost;database=postgres;password=.;username=postgres";
 
             var Store = DocumentStore.For(configure =>
@@ -29,8 +33,9 @@ namespace MartenBackend.Bootstrapping.Consumer
 
             builder.Register(r => Store).As<IDocumentStore>();
 
-
             builder.RegisterModule(new RepositoryModule());
+            builder.RegisterModule(new BusinessEngineModule());
+            builder.RegisterModule(new ApplicationModule());
 
             var container = builder.Build();
             return container;

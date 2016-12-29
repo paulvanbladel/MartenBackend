@@ -20,7 +20,7 @@
       <PrivateAssets>All</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.NET.Test.Sdk">
-      <Version>15.0.0-preview-20161216-01</Version>
+      <Version>15.0.0-preview-20161227-02</Version>
     </PackageReference>
     <PackageReference Include="xunit">
       <Version>2.2.0-beta4-build3444</Version>
@@ -30,14 +30,11 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\MartenBackend.Application\MartenBackend.Application.csproj" />
-    <ProjectReference Include="..\MartenBackend.Bootstrapping\MartenBackend.Bootstrapping.csproj" />
-    <ProjectReference Include="..\MartenBackend.BusinessEngine.Contract\MartenBackend.BusinessEngine.Contract.csproj" />
-    <ProjectReference Include="..\MartenBackend.BusinessEngine\MartenBackend.BusinessEngine.csproj" />
     <ProjectReference Include="..\MartenBackend.Common.Contract\MartenBackend.Common.Contract.csproj" />
     <ProjectReference Include="..\MartenBackend.Common\MartenBackend.Common.csproj" />
     <ProjectReference Include="..\MartenBackend.Domain\MartenBackend.Domain.csproj" />
     <ProjectReference Include="..\MartenBackend.Repository.Contract\MartenBackend.Repository.Contract.csproj" />
+    <ProjectReference Include="..\MartenBackend.Repository.DI\MartenBackend.Repository.DI.csproj" />
     <ProjectReference Include="..\MartenBackend.Repository\MartenBackend.Repository.csproj" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

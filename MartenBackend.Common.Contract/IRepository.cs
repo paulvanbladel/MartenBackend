@@ -15,8 +15,8 @@ namespace MartenBackend.Common.Contract
         Task<int> CountAsync();
         Task<IList<T>> GetAsync();
         Task<IList<T>> GetAsync(Func<IQueryable<T>, IQueryable<T>> queryShaper);
-        Task Delete(T entity);
-        Task Delete(int id);
-        Task DeleteAll();
+        Task DeleteAsync(T entity);
+        Task DeleteAsync(int id);
+        Task DeleteAllAsync();
     }
 }

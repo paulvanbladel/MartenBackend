@@ -1,8 +1,8 @@
-﻿using Autofac;
-using MartenBackend.BusinessEngine;
+﻿using System;
+using Autofac;
 using System.Reflection;
 
-namespace MartenBackend.Bootstrapping
+namespace MartenBackend.BusinessEngine.DI
 {
     public class BusinessEngineModule : Autofac.Module
     {
